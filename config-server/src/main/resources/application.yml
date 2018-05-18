@@ -9,8 +9,8 @@ spring:
           uri: https://gitee.com/ldwds/config-repo-demo.git
           # 配置仓库路径下的相对搜索位置，可以配置多个. 比如 spring_cloud_in_action/config_repo 两个目录
           search-paths: '{application}'
-          username: david1228@foxmail.com
-          password: MyFgw@1228
+          username:
+          password:
           # 本地仓库目录设定
           basedir: ${user.home}/local-config-repo/
           force-pull: true
