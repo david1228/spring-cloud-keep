@@ -1,0 +1,8 @@
+spring:
+  cloud:
+    config:
+      profile: prod
+
+server:
+  port: 5114
+

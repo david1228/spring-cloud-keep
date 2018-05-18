@@ -1,0 +1,10 @@
+server:
+  port: 3111
+spring:
+  application:
+    name: consumer-ribbon
+
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: http://peer1:1111/eureka/

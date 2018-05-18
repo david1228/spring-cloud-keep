@@ -1,0 +1,42 @@
+server:
+  port: ${PORTX:5112}
+
+spring:
+  application:
+    name: config-client
+  cloud:
+    config:
+      # 配置中心地址
+#      uri: http://localhost:5111/,http://localhost:5211/
+      profile: default
+      label: master
+      username: configauth
+      password: configauth123456
+      # 通过注册中心获取配置
+      discovery:
+        service-id: config-server
+        enabled: true
+      # 快速失败检查
+      fail-fast: true
+
+    # 消息总线
+    stream:
+      kafka:
+        binder:
+          zkNodes: 10.185.29.25:2181,10.185.29.25:2182,10.185.29.25:2183/kafka_test
+          brokers: 10.127.220.91:9092,10.127.220.91:9093,10.127.220.91:9094
+
+# 关闭安全防护
+management:
+  security:
+    enabled: false
+  # 开启健康检查
+  health:
+    config:
+      enabled: false
+
+#服务发现
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: http://peer1:1111/eureka/,http://peer2:1112/eureka/

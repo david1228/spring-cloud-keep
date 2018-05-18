@@ -1,0 +1,9 @@
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: http://peer1:1111/eureka/
+server:
+  port: 4111
+spring:
+  application:
+    name: consumer-feign

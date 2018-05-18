@@ -1,0 +1,24 @@
+spring:
+  application:
+    name: config-client
+  cloud:
+    config:
+      # 这个地址必须在bootstrap.yml中配置
+      uri: http://localhost:5211/
+      profile: default
+      label: master
+      # 用户认证
+      username: configauth
+      password: configauth123456
+
+#关闭安全防护
+management:
+  security:
+    enabled: false
+
+# 开启健康检查
+health:
+  config:
+    enabled: true
+
+

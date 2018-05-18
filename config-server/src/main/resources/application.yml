@@ -1,0 +1,63 @@
+spring:
+  application:
+    name: config-server
+
+  cloud:
+    config:
+      server:
+        git:
+          uri: https://gitee.com/ldwds/config-repo-demo.git
+          # 配置仓库路径下的相对搜索位置，可以配置多个. 比如 spring_cloud_in_action/config_repo 两个目录
+          search-paths: '{application}'
+          username: david1228@foxmail.com
+          password: MyFgw@1228
+          # 本地仓库目录设定
+          basedir: ${user.home}/local-config-repo/
+          force-pull: true
+        # 健康检查
+        health:
+          repositories:
+            config-repo-demo:
+              label: master
+              name: config-client
+              profiles: default
+    # 消息总线
+    stream:
+      kafka:
+        binder:
+          zkNodes: 10.185.29.25:2181,10.185.29.25:2182,10.185.29.25:2183/kafka_test
+          brokers: 10.127.220.91:9092,10.127.220.91:9093,10.127.220.91:9094
+
+
+    # 跟踪事件消息
+    bus:
+      trace:
+        enabled: true
+
+# 关闭安全防护，能访问/bus/refresh, 不能直接访问/encrypt?
+management:
+  security:
+    enabled: false
+
+server:
+  port: 5111
+
+# 用户认证，客户端应用接入时加入安全认证配置
+security:
+  user:
+    name: configauth
+    password: configauth123456
+  # 只要这里开启，客户端必须配置用户认证
+  basic:
+    enabled: true
+
+#服务注册
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: http://peer1:1111/eureka/,http://peer2:1112/eureka/
+
+#logging:
+#  level:
+#    org.springframework.cloud: debug
+#    org.springframework.boot: debug
